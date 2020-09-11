@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "AngularMHatkaPagination"
+    }
+  },
+  "defaultProject": "AngularMHatkaPagination",
+  "cli": {
+    "analytics": "b96ec6e8-b474-4907-96b6-ca6d2c24883c"
+  }
 }
