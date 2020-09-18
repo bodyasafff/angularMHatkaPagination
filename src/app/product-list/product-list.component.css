@@ -1,0 +1,16 @@
+.product{
+    display: inline-block;
+    margin: 20px;
+    cursor: pointer;
+    width: 20%;
+}
+
+.product-image{
+    width: 100%;
+}
+
+p{
+    text-align: center;
+    margin: 2px 0;
+    padding: 2px 0;
+}
