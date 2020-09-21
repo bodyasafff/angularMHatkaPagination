@@ -4,6 +4,8 @@ import { IProduct } from '../interfaces/IProduct';
 import { IDataProducts } from '../interfaces/IDataProducts';
 import { IProductShow } from '../interfaces/IProductShow';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,21 +15,21 @@ export class ProductService {
 
   public products:IProductShow[] = [];
 
-  private countElementsInRow:number = 4;
+  public countElementsInRow:number = 4;
 
   public numPage:number = 1;
-
-  public countPages:number;
 
   public buttons:number[] = [];
 
   public URL:string = "http://tekstil-rivne.com.ua";
 
   public apiGetProducts ():Observable<IDataProducts>{
-    return this.http.get<IDataProducts>(this.URL+'/Product/GetProducts?numPage='+this.numPage+'&idgroup=2&country=&material=&brend=&typeCloth=&filler=&special=');
+    return this.http.get<IDataProducts>(this.URL+'/Product/GetProducts?numPage='+this.numPage+'&idgroup=2&country=&material=&brend=&typeCloth=&filler=&special=')
   }
 
   public getProducts(){
+    this.buttons = [];
+    this.products = [];
      this.apiGetProducts().subscribe(res => {
       let line:IProduct[] = [];
       for(let i = 0;i < res.products.length;i += this.countElementsInRow){
@@ -35,14 +37,13 @@ export class ProductService {
           line.push(res.products[j]);
         }
         this.products.push({products:line});
-        line = [];
+        line = [];  
+     }
 
-        this.countPages = Math.ceil(res.countProducts / 20);
-        for(let i = 1;i < this.countPages+1;i++){
-          this.buttons.push(i);
-        }  
+     let countPages:number =  Math.ceil(res.countProducts / 20);
+     for(let i = 1;i < countPages + 1;i++){
+       this.buttons.push(i);
      }
     });
   }
-
 }

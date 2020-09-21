@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProductService } from '../services/product.service';
-import { IProductShow } from '../interfaces/IProductShow';
 
 
 
@@ -16,14 +15,16 @@ export class ProductListComponent implements OnInit {
 
   constructor(private http: HttpClient,private productService: ProductService) { }
 
-  public prod:IProductShow[] = [];
-
   public getProductService():ProductService{
     return this.productService;
   }
 
-  ngOnInit(): void {
+  public getProducts(){
     this.productService.getProducts();
-    this.prod = this.productService.products;
+    this.productService.products;
+  }
+
+  ngOnInit(): void {
+    this.getProducts();
   }
 }

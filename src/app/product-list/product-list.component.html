@@ -1,9 +1,9 @@
 <div class="product-list">
-    <div class="line-products" *ngFor="let line of prod">
+    <div class="line-products" *ngFor="let line of (getProductService().products)">
         <div class="product" *ngFor="let product of line.products">
-            <img class="product-image" [src]="this.getProductService().URL+'/Image/'+product.image">
-            <p>{{product.name}}</p>
-            <p>{{product.price+' грн.'}}</p>
+            <img *ngIf="product" class="product-image" [src]="this.getProductService().URL+'/Image/'+product.image[0]">
+            <p *ngIf="product">{{product.name}}</p>
+            <p *ngIf="product">{{product.price+' грн.'}}</p>
         </div>
     </div>
 </div>
