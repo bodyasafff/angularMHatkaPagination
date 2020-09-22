@@ -25,7 +25,7 @@ export class ButtonListComponent implements OnInit {
 
   ngOnInit(): void {
     let numpage:number = Number(this.activatedRoute.snapshot.paramMap.get("numPage"));
-    numpage = 0 ? numpage = numpage : numpage = 1;
+    numpage < 1 ? numpage = 1 : null;
     this.productService.getProducts(numpage);
   }
 }
