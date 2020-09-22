@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -8,9 +8,12 @@ import { HttpClient } from '@angular/common/http';
 })
 
 
-export class AppComponent {
+export class AppComponent implements OnInit{
 
   constructor(){
+  }
+  
+  ngOnInit(){
   }
   
 }

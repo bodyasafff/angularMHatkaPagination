@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProductService } from '../services/product.service';
-
-
-
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -13,18 +11,16 @@ import { ProductService } from '../services/product.service';
 
 export class ProductListComponent implements OnInit {
 
-  constructor(private http: HttpClient,private productService: ProductService) { }
+  constructor(private http: HttpClient,
+    private productService: ProductService,
+    private activatedRoute: ActivatedRoute ){}
 
   public getProductService():ProductService{
     return this.productService;
   }
 
-  public getProducts(){
-    this.productService.getProducts();
-    this.productService.products;
-  }
-
   ngOnInit(): void {
-    this.getProducts();
+    // console.log(this.activatedRoute.snapshot.paramMap.get("numPage"));  
+    // this.productService.getProducts();
   }
 }

@@ -5,13 +5,15 @@ import { IDataProducts } from '../interfaces/IDataProducts';
 import { IProductShow } from '../interfaces/IProductShow';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private activatedRoute:ActivatedRoute) { }
 
   public products:IProductShow[] = [];
 
@@ -27,7 +29,8 @@ export class ProductService {
     return this.http.get<IDataProducts>(this.URL+'/Product/GetProducts?numPage='+this.numPage+'&idgroup=2&country=&material=&brend=&typeCloth=&filler=&special=')
   }
 
-  public getProducts(){
+  public getProducts(numPage:number){
+    this.numPage = numPage;
     this.buttons = [];
     this.products = [];
      this.apiGetProducts().subscribe(res => {

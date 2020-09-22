@@ -1,3 +1,5 @@
 <div class="button-list">
-    <div class="paginarion-button" *ngFor="let button of getProductService().buttons" (click)="changePage(button)">{{button}}</div>
+    <div class="paginarion-button" *ngFor="let button of getProductService().buttons"
+    [routerLink]="['',button]"
+    (click)="changePage(button)" >{{button}}</div>
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { ProductService } from '../services/product.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-button-list',
@@ -8,12 +9,13 @@ import { ProductService } from '../services/product.service';
 })
 export class ButtonListComponent implements OnInit {
 
-  constructor(private productService:ProductService) { }
+  constructor(private productService:ProductService,
+    private activatedRoute:ActivatedRoute) { }
 
-  public changePage(button){
+  public changePage(button:number){
     if(this.productService.numPage !== button){
     this.productService.numPage = button;
-    this.productService.getProducts();
+    this.productService.getProducts(button);
     }
   }
 
@@ -21,6 +23,9 @@ export class ButtonListComponent implements OnInit {
     return this.productService;
   }
 
-  ngOnInit(): void {  
+  ngOnInit(): void {
+    let numpage:number = Number(this.activatedRoute.snapshot.paramMap.get("numPage"));
+    numpage = 0 ? numpage = numpage : numpage = 1;
+    this.productService.getProducts(numpage);
   }
 }
