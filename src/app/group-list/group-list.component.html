@@ -1,1 +1,12 @@
-<p>group-list works!</p>
+<div *ngIf='categories' class="categories">
+    <div class="category-container" *ngFor="let category of categories" >
+        <div (click)="showChildCategories(category)">
+            <span class="category">{{category.name}}</span>
+        </div>
+        <div *ngIf="category.selected">
+            <div *ngFor="let cild of category.childCategories">
+                <span>{{cild.name}}</span>
+            </div>
+        </div>
+    </div>
+</div>

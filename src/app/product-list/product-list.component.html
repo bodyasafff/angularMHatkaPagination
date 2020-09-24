@@ -1,9 +1,15 @@
 <div class="product-list">
-    <div class="line-products" *ngFor="let line of (getProductService().products)">
+    <div class="line-products" *ngFor="let line of (this.products)">
         <div class="product" *ngFor="let product of line.products">
             <img *ngIf="product" class="product-image" [src]="this.getProductService().URL+'/Image/'+product.image[0]">
             <p *ngIf="product">{{product.name}}</p>
             <p *ngIf="product">{{product.price+' грн.'}}</p>
         </div>
     </div>
+</div>
+<div class="button-list">
+    <div class="button" *ngFor="let button of this.buttons"
+    [routerLink]="['',button]" 
+    (click)="changePage(button)"
+    >{{button}}</div>
 </div>

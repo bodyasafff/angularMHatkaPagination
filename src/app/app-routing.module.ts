@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ButtonListComponent } from './button-list/button-list.component';
 import { ProductListComponent } from './product-list/product-list.component';
 
 const routes: Routes = [
-  {path:':numPage',component:ButtonListComponent},
-  {path:'',component:ButtonListComponent},
-  {path:'dad',component:ProductListComponent}
+  {path:':numPage',component:ProductListComponent},
+  {path:'',component:ProductListComponent},
 ];
 
 @NgModule({
